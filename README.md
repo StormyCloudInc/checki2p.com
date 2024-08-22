@@ -27,6 +27,6 @@ We aim to expand CheckI2P.com to include more comprehensive tools for testing va
 
 ## Stay in Touch
 
-We value your input and would love to hear your experiences and suggestions. For major announcements and updates, watch this repository or visit our [official website](https://stormycloud.org).
+We value your input and would love to hear your experiences and suggestions. For major announcements and updates, watch this repository or visit www.stormycloud.org.
 
 Thank you for supporting our efforts to make the internet a more private and secure place!
