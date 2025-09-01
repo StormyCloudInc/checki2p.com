@@ -1,0 +1,25 @@
+{
+  "name": "checki2p-com",
+  "version": "2.0.0",
+  "description": "CheckI2P.com - I2P Proxy Detection Service",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build required for static site'",
+    "hash-ips": "node scripts/hash-ips.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WaxySteelWorm/checki2p.com"
+  },
+  "keywords": [
+    "i2p",
+    "privacy",
+    "proxy",
+    "outproxy"
+  ],
+  "author": "StormyCloud Inc",
+  "license": "MIT",
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

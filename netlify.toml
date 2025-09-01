@@ -1,0 +1,55 @@
+# Netlify Configuration
+
+[build]
+  publish = "/"
+
+[functions]
+  directory = "netlify/functions"
+
+[[edge_functions]]
+  path = "/api/check-proxy"
+  function = "check-proxy"
+
+# Redirects for backward compatibility
+[[redirects]]
+  from = "/index.php"
+  to = "/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/api/ip"
+  to = "/.netlify/functions/api-ip"
+  status = 200
+
+[[redirects]]
+  from = "/api/ip/"
+  to = "/.netlify/functions/api-ip"
+  status = 200
+
+[[redirects]]
+  from = "/api/ip/index.php"
+  to = "/.netlify/functions/api-ip"
+  status = 200
+
+[[redirects]]
+  from = "/reseed/index.php"
+  to = "/reseed.html"
+  status = 301
+
+[[redirects]]
+  from = "/ping/index.php"
+  to = "/ping.html"
+  status = 301
+
+[[redirects]]
+  from = "/donate/index.php"
+  to = "/donate.html"
+  status = 301
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
