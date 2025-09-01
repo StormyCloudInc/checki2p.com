@@ -9,14 +9,16 @@ exports.handler = async (event, context) => {
     };
   }
 
-  // Debug: Check which env vars exist (remove in production)
-  console.log('Environment variables check:');
-  console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
-  console.log('NETLIFY_DATABASE_URL exists:', !!process.env.NETLIFY_DATABASE_URL);
-  console.log('DATABASE_URL_UNPOOLED exists:', !!process.env.DATABASE_URL_UNPOOLED);
+  // Use the Netlify database URL
+  const dbUrl = process.env.NETLIFY_DATABASE_URL;
   
-  const dbUrl = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL_UNPOOLED;
-  console.log('Using connection string starting with:', dbUrl?.substring(0, 20));
+  if (!dbUrl) {
+    console.error('NETLIFY_DATABASE_URL not found in environment variables');
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Database configuration missing' })
+    };
+  }
 
   // Create database client
   const client = new Client({
