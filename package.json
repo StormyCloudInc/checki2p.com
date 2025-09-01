@@ -19,6 +19,9 @@
   ],
   "author": "StormyCloud Inc",
   "license": "MIT",
+  "dependencies": {
+    "pg": "^8.11.3"
+  },
   "devDependencies": {
     "netlify-cli": "^17.0.0"
   }
