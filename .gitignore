@@ -1,1 +1,7 @@
 checkproxy.php
+.env
+.env.local
+node_modules/
+.netlify/
+*.swp
+scripts/
