@@ -9,13 +9,18 @@ exports.handler = async (event, context) => {
     };
   }
 
-  // Debug: Log the DATABASE_URL (remove in production)
+  // Debug: Check which env vars exist (remove in production)
+  console.log('Environment variables check:');
   console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
-  console.log('DATABASE_URL starts with:', process.env.DATABASE_URL?.substring(0, 20));
+  console.log('NETLIFY_DATABASE_URL exists:', !!process.env.NETLIFY_DATABASE_URL);
+  console.log('DATABASE_URL_UNPOOLED exists:', !!process.env.DATABASE_URL_UNPOOLED);
+  
+  const dbUrl = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL_UNPOOLED;
+  console.log('Using connection string starting with:', dbUrl?.substring(0, 20));
 
   // Create database client
   const client = new Client({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: dbUrl,
     ssl: {
       rejectUnauthorized: false
     }
