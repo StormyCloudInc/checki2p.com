@@ -9,6 +9,10 @@ exports.handler = async (event, context) => {
     };
   }
 
+  // Debug: Log the DATABASE_URL (remove in production)
+  console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+  console.log('DATABASE_URL starts with:', process.env.DATABASE_URL?.substring(0, 20));
+
   // Create database client
   const client = new Client({
     connectionString: process.env.DATABASE_URL,

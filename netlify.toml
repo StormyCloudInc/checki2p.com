@@ -1,7 +1,7 @@
 # Netlify Configuration
 
 [build]
-  command = "npm install"
+  command = "npm ci || npm install"
   publish = "/"
 
 [functions]
