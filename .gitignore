@@ -5,3 +5,4 @@ node_modules/
 .netlify/
 *.swp
 scripts/
+check.py
