@@ -1,6 +1,6 @@
 {
   "name": "checki2p-com",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CheckI2P.com - I2P Proxy Detection Service",
   "scripts": {
     "dev": "netlify dev",
@@ -20,7 +20,8 @@
   "author": "StormyCloud Inc",
   "license": "MIT",
   "dependencies": {
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "node-appwrite": "^14.0.0"
   },
   "devDependencies": {
     "netlify-cli": "^17.0.0"

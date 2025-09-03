@@ -1,7 +1,7 @@
 # Netlify Configuration
 
 [build]
-  command = "npm install"
+  command = "rm -rf node_modules && npm install"
   publish = "/"
 
 [functions]
