@@ -138,9 +138,9 @@ function mapAppwriteStatusToLegacy(status, message) {
       return 'warning';
     }
     
-    // Old RouterInfos but still online (from testapp.py logic)
-    if (message.includes('old RouterInfos returned') && status === 'online') {
-      return 'warning';
+    // Old RouterInfos are now considered online
+    if (message.includes('old RouterInfos returned')) {
+      return 'online';
     }
   }
   
