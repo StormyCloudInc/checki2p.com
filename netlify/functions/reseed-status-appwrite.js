@@ -53,6 +53,18 @@ exports.handler = async (event, context) => {
 
     // Transform the data for frontend consumption
     const servers = response.documents.map(doc => {
+      // Special case: reseed.diva.exchange is always online
+      if (doc.hostname === 'reseed.diva.exchange') {
+        return {
+          server_name: doc.hostname,
+          status: 'online',
+          status_message: 'Success',
+          last_checked: doc.last_check,
+          router_infos: doc.router_infos || 0,
+          offline_duration: null
+        };
+      }
+
       // Calculate offline duration if server is offline
       let offlineDuration = null;
       if (doc.status === 'offline' && doc.last_check) {
@@ -62,9 +74,12 @@ exports.handler = async (event, context) => {
         offlineDuration = formatDuration(durationSeconds);
       }
 
+      // Determine the display status based on the message and status
+      let displayStatus = mapAppwriteStatusToLegacy(doc.status, doc.message);
+
       return {
         server_name: doc.hostname,
-        status: mapAppwriteStatusToLegacy(doc.status),
+        status: displayStatus,
         status_message: doc.message || '',
         last_checked: doc.last_check,
         router_infos: doc.router_infos || 0,
@@ -110,15 +125,35 @@ exports.handler = async (event, context) => {
 };
 
 // Map Appwrite status values to the legacy format expected by frontend
-function mapAppwriteStatusToLegacy(status) {
+function mapAppwriteStatusToLegacy(status, message) {
+  // Check message for specific patterns
+  if (message) {
+    // Status code -1 or 500 = offline
+    if (message.includes('Status code -1') || message.includes('Status code 500')) {
+      return 'offline';
+    }
+    
+    // su3 file too old = warning
+    if (message.includes('su3 file too old')) {
+      return 'warning';
+    }
+    
+    // Old RouterInfos but still online (from testapp.py logic)
+    if (message.includes('old RouterInfos returned') && status === 'online') {
+      return 'warning';
+    }
+  }
+  
+  // Default mapping based on status
   switch(status) {
     case 'online':
       return 'online';
     case 'offline':
       return 'offline';
     case 'outdated':
-    case 'error':
       return 'warning';
+    case 'error':
+      return 'offline';
     default:
       return 'offline';
   }

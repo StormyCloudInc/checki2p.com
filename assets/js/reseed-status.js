@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const statusContainer = document.getElementById('statusContainer');
     
     try {
-        // Fetch server status from Netlify function
-        const response = await fetch('/.netlify/functions/reseed-status');
+        // Fetch server status from Appwrite-based Netlify function
+        const response = await fetch('/.netlify/functions/reseed-status-appwrite');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
