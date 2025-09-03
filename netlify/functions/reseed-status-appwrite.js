@@ -65,12 +65,12 @@ exports.handler = async (event, context) => {
         };
       }
 
-      // Calculate offline duration if server is offline
+      // Calculate offline duration if server is offline and has first_offline
       let offlineDuration = null;
-      if (doc.status === 'offline' && doc.last_check) {
-        const lastCheckTime = new Date(doc.last_check).getTime();
+      if (doc.status === 'offline' && doc.first_offline) {
+        const firstOfflineTime = new Date(doc.first_offline).getTime();
         const currentTime = Date.now();
-        const durationSeconds = Math.floor((currentTime - lastCheckTime) / 1000);
+        const durationSeconds = Math.floor((currentTime - firstOfflineTime) / 1000);
         offlineDuration = formatDuration(durationSeconds);
       }
 

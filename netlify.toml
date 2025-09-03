@@ -47,6 +47,11 @@
   to = "/donate.html"
   status = 301
 
+[[redirects]]
+  from = "/donate/"
+  to = "/donate.html"
+  status = 301
+
 # Headers for security
 [[headers]]
   for = "/*"
