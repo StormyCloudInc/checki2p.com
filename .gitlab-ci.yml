@@ -9,3 +9,18 @@ stages:
 - test
 include:
 - template: Security/SAST-IaC.latest.gitlab-ci.yml
+
+# Add `dast` to your `stages:` configuration
+stages:
+  - dast
+
+# Include the DAST template
+include:
+  - template: DAST.gitlab-ci.yml
+
+# Your selected site and scanner profiles:
+dast:
+  stage: dast
+  dast_configuration:
+    site_profile: "checki2p"
+    scanner_profile: "DAST Scanner"
