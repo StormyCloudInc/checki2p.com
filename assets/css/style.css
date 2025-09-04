@@ -198,6 +198,31 @@ footer a:hover {
     margin-right: 10px;
 }
 
+/* Download link styling */
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #007bff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-link:hover {
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.download-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.no-download {
+    color: #ccc;
+    font-size: 18px;
+}
+
 .reseed-footer a:hover {
     text-decoration: underline;
 }
