@@ -128,7 +128,7 @@ function getDownloadLink(server) {
             </svg>
         </a>`;
     }
-    return '<span class="no-download">-</span>';
+    return '<span class="no-download">—</span>';
 }
 
 // Escape HTML to prevent XSS
