@@ -150,6 +150,8 @@ function mapAppwriteStatusToLegacy(status, message) {
       return 'online';
     case 'offline':
       return 'offline';
+    case 'warning':
+      return 'warning';
     case 'outdated':
       return 'warning';
     case 'error':
