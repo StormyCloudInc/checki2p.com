@@ -21,19 +21,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <table class='status-table'>
                     <tr>
                         <th>Server Name</th>
-                        <th>Status</th>
+                        <th style='text-align: center;'>Status</th>
+                        <th style='text-align: center;'>Download</th>
                     </tr>
             `;
             
             sortedServers.forEach(server => {
                 const statusClass = getStatusClass(server.status);
                 const tooltip = getTooltip(server);
+                const downloadLink = getDownloadLink(server);
                 
                 tableHTML += `
                     <tr>
                         <td>${escapeHtml(server.server_name)}</td>
                         <td style='text-align: center;'>
                             <span class='dot ${statusClass}' title='${escapeHtml(tooltip)}'></span>
+                        </td>
+                        <td style='text-align: center;'>
+                            ${downloadLink}
                         </td>
                     </tr>
                 `;
@@ -109,6 +114,25 @@ function getTooltip(server) {
         return server.status_message || 'Warning';
     }
     return '';
+}
+
+// Get download link for server
+function getDownloadLink(server) {
+    // Only show download link for online servers
+    if (server.status === 'online') {
+        // Generate the storage file URL
+        const fileId = server.server_name.replace(/\./g, '_') + '_su3';
+        const storageUrl = `https://nyc.cloud.appwrite.io/v1/storage/buckets/68b99755000b468e1474/files/${fileId}/download?project=68b790ed0021084ef07a`;
+        
+        return `<a href="${storageUrl}" class="download-link" title="Download SU3 file from ${escapeHtml(server.server_name)}">
+            <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 11L12 15L8 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 15L3 19C3 20.1046 3.89543 21 5 21L19 21C20.1046 21 21 20.1046 21 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>`;
+    }
+    return '<span class="no-download">-</span>';
 }
 
 // Escape HTML to prevent XSS
