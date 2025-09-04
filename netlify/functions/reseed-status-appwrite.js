@@ -12,11 +12,13 @@ exports.handler = async (event, context) => {
   // Appwrite configuration from environment variables
   const APPWRITE_ENDPOINT = process.env.APPWRITE_ENDPOINT;
   const APPWRITE_PROJECT_ID = process.env.APPWRITE_PROJECT_ID;
-  const APPWRITE_API_KEY = process.env.APPWRITE_API_KEY;
+  const APPWRITE_DATABASE_API_KEY = process.env.APPWRITE_DATABASE_API_KEY;
+  const APPWRITE_STORAGE_API_KEY = process.env.APPWRITE_STORAGE_API_KEY;
   const DATABASE_ID = process.env.APPWRITE_DATABASE_ID;
+  const STORAGE_BUCKET_ID = process.env.APPWRITE_STORAGE_BUCKET_ID;
 
   // Validate required environment variables
-  if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !APPWRITE_API_KEY || !DATABASE_ID) {
+  if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !APPWRITE_DATABASE_API_KEY || !DATABASE_ID) {
     console.error('Missing required Appwrite environment variables');
     return {
       statusCode: 500,
@@ -32,11 +34,11 @@ exports.handler = async (event, context) => {
   }
   const COLLECTION_ID = 'reseed_servers';
 
-  // Initialize Appwrite client
+  // Initialize Appwrite client with database API key
   const client = new sdk.Client()
     .setEndpoint(APPWRITE_ENDPOINT)
     .setProject(APPWRITE_PROJECT_ID)
-    .setKey(APPWRITE_API_KEY);
+    .setKey(APPWRITE_DATABASE_API_KEY);
 
   const databases = new sdk.Databases(client);
 
@@ -77,13 +79,22 @@ exports.handler = async (event, context) => {
       // Determine the display status based on the message and status
       let displayStatus = mapAppwriteStatusToLegacy(doc.status, doc.message);
 
+      // Generate download URL if server is online and storage is configured
+      let download_url = null;
+      if (displayStatus === 'online' && STORAGE_BUCKET_ID && APPWRITE_STORAGE_API_KEY) {
+        const fileId = doc.hostname.replace(/\./g, '_') + '_su3';
+        // Note: Download URLs don't require API key in the URL, they use project ID for public access
+        download_url = `${APPWRITE_ENDPOINT}/storage/buckets/${STORAGE_BUCKET_ID}/files/${fileId}/download?project=${APPWRITE_PROJECT_ID}`;
+      }
+
       return {
         server_name: doc.hostname,
         status: displayStatus,
         status_message: doc.message || '',
         last_checked: doc.last_check,
         router_infos: doc.router_infos || 0,
-        offline_duration: offlineDuration
+        offline_duration: offlineDuration,
+        download_url: download_url
       };
     });
 

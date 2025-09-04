@@ -118,13 +118,9 @@ function getTooltip(server) {
 
 // Get download link for server
 function getDownloadLink(server) {
-    // Only show download link for online servers
-    if (server.status === 'online') {
-        // Generate the storage file URL
-        const fileId = server.server_name.replace(/\./g, '_') + '_su3';
-        const storageUrl = `https://nyc.cloud.appwrite.io/v1/storage/buckets/68b99755000b468e1474/files/${fileId}/download?project=68b790ed0021084ef07a`;
-        
-        return `<a href="${storageUrl}" class="download-link" title="Download SU3 file from ${escapeHtml(server.server_name)}">
+    // Check if server has a download URL from the API
+    if (server.download_url) {
+        return `<a href="${server.download_url}" class="download-link" title="Download SU3 file from ${escapeHtml(server.server_name)}" target="_blank" rel="noopener noreferrer">
             <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 15L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M16 11L12 15L8 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
