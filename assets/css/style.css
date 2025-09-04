@@ -227,6 +227,295 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Card Layout Styles for Reseed Test Page */
+.status-summary {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.status-summary h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.summary-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px 30px;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-card.online {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.stat-card.offline {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.stat-card.warning {
+    background: #fff8e1;
+    color: #f57c00;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Server Cards Grid */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.server-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.server-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* Card status borders */
+.card-online {
+    border-color: #4caf50;
+}
+
+.card-offline {
+    border-color: #f44336;
+}
+
+.card-warning {
+    border-color: #ff9800;
+}
+
+.card-header {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.server-name {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 500;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.status-badge.status-online {
+    background: #4caf50;
+    color: white;
+}
+
+.status-badge.status-offline {
+    background: #f44336;
+    color: white;
+}
+
+.status-badge.status-warning {
+    background: #ff9800;
+    color: white;
+}
+
+.card-body {
+    padding: 20px;
+    min-height: 80px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.status-online {
+    background: #4caf50;
+}
+
+.status-dot.status-offline {
+    background: #f44336;
+}
+
+.status-dot.status-warning {
+    background: #ff9800;
+}
+
+.status-text {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.offline-duration {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #f44336;
+}
+
+.offline-duration svg {
+    stroke: #f44336;
+}
+
+.router-info {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.info-label {
+    font-weight: 500;
+}
+
+.info-value {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.card-footer {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.download-button svg {
+    stroke: white;
+}
+
+.no-download {
+    font-size: 0.85em;
+    color: #999;
+    font-style: italic;
+}
+
+.last-checked {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.last-checked-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.last-checked-text svg {
+    stroke: #666;
+}
+
+.error-message {
+    text-align: center;
+    padding: 40px;
+    color: #f44336;
+}
+
+.error-details {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .summary-stats {
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 15px 20px;
+        min-width: 100px;
+    }
+    
+    .stat-number {
+        font-size: 2em;
+    }
+}
+
 
 /* Banner */
 
