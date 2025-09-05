@@ -101,7 +101,7 @@ footer a:hover {
 }
 
 .status-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #2c3e50;
 }
 
 .status-table th {
@@ -157,25 +157,21 @@ footer a:hover {
     display: inline-block;
     position: relative;
     cursor: pointer;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 }
 
 .glowing-green {
     background-color: #4caf50;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2),
-                0 0 8px rgba(76, 175, 80, 0.6);
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
 }
 
 .glowing-red {
     background-color: #f44336;
-    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2),
-                0 0 8px rgba(244, 67, 54, 0.6);
+    box-shadow: 0 0 4px rgba(244, 67, 54, 0.3);
 }
 
 .glowing-yellow {
     background-color: #ff9800;
-    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2),
-                0 0 8px rgba(255, 152, 0, 0.6);
+    box-shadow: 0 0 4px rgba(255, 152, 0, 0.3);
 }
 .dot:hover::after {
     content: attr(title);
