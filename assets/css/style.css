@@ -1,14 +1,37 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/InterVariable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg: #0b1220;
+    --surface: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2937;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --success: #22c55e;
+    --warn: #f59e0b;
+    --error: #ef4444;
+    --radius: 12px;
+}
+
 body {
-    background-color: #f0f8ff;
+    background-color: var(--bg);
+    color: var(--text);
     text-align: center;
     margin: 0;
     padding: 0;
-    font-family: helvetica, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 .header {
     padding: 20px;
-    background-color: #f8f8f8;
-    color: #333;
+    background-color: transparent;
+    color: var(--text);
 }
 
 .logo {
@@ -32,17 +55,13 @@ body {
 .message {
     display: inline-block;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--surface);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 1px var(--border);
     margin-bottom: 20px;
 }
 .donate-banner {
-    background-color: #d3d3d3;
-    padding: 8px;
-    font-size: 1em;
-    margin-bottom: 20px;
-    font-weight: bold;
+    display: none;
 }
 .donate-banner span, .donate-banner .copy-confirmation {
     cursor: pointer;
@@ -53,11 +72,11 @@ body {
 }
 .copy-confirmation {
     display: none;
-    color: green;
+    color: var(--success);
 }
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--surface);
+    color: var(--text);
     padding: 10px 0;
     position: absolute;
     bottom: 0;
@@ -65,7 +84,7 @@ footer {
     font-weight: bold; 
 }
 footer a {
-    color: white; /* Keep the links white */
+    color: var(--text); /* Keep the links visible */
     text-decoration: none; 
     margin-left: 10px;
     margin-right: 10px;
@@ -94,18 +113,18 @@ footer a:hover {
 .status-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--surface);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 1px var(--border);
 }
 
 .status-table thead {
-    background: #2c3e50;
+    background: #0f172a;
 }
 
 .status-table th {
-    color: white;
+    color: var(--text);
     font-weight: 600;
     padding: 15px;
     text-align: left;
@@ -123,12 +142,12 @@ footer a:hover {
     padding: 12px 15px;
     text-align: left;
     vertical-align: middle;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border);
 }
 
 .status-table td:first-child {
     font-weight: 500;
-    color: #333;
+    color: var(--text);
 }
 
 .status-table tr:last-child td {
@@ -140,7 +159,7 @@ footer a:hover {
 }
 
 .status-table tbody tr:hover {
-    background-color: #f8f9fa;
+    background-color: rgba(255,255,255,0.03);
     transform: scale(1.01);
 }
 .status-icon {
@@ -160,18 +179,18 @@ footer a:hover {
 }
 
 .glowing-green {
-    background-color: #4caf50;
-    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+    background-color: var(--success);
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
 }
 
 .glowing-red {
-    background-color: #f44336;
-    box-shadow: 0 0 4px rgba(244, 67, 54, 0.3);
+    background-color: var(--error);
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
 }
 
 .glowing-yellow {
-    background-color: #ff9800;
-    box-shadow: 0 0 4px rgba(255, 152, 0, 0.3);
+    background-color: var(--warn);
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
 }
 .dot:hover::after {
     content: attr(title);
@@ -179,11 +198,11 @@ footer a:hover {
     left: 50%;
     transform: translateX(-50%);
     bottom: 100%;
-    background-color: #fff;
-    color: #333;
+    background-color: #111827;
+    color: var(--text);
     padding: 5px 10px;
     border-radius: 6px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     white-space: nowrap;
     z-index: 1;
     margin-bottom: 5px;
@@ -198,11 +217,11 @@ footer a:hover {
     left: 50%;
     transform: translateX(-50%);
     bottom: 100%;
-    background-color: #fff;
-    color: #333;
+    background-color: #111827;
+    color: var(--text);
     padding: 5px 10px;
     border-radius: 6px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     white-space: nowrap;
     z-index: 1;
     margin-bottom: 5px;
@@ -213,18 +232,18 @@ footer a:hover {
     left: 50%;
     transform: translateX(-50%);
     bottom: 100%;
-    background-color: #fff;
-    color: #333;
+    background-color: #111827;
+    color: var(--text);
     padding: 5px 10px;
     border-radius: 6px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     white-space: nowrap;
     z-index: 1;
     margin-bottom: 5px;
 }
 .reseed-footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--surface);
+    color: var(--text);
     padding: 10px 0;
     position: relative; /* Adjust as needed */
     bottom: 0;
@@ -234,7 +253,7 @@ footer a:hover {
 }
 
 .reseed-footer a {
-    color: white;
+    color: var(--text);
     text-decoration: none;
     margin-left: 10px;
     margin-right: 10px;
@@ -246,20 +265,20 @@ footer a:hover {
     align-items: center;
     justify-content: center;
     padding: 6px 12px;
-    background: #f0f4f8;
-    color: #667eea;
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--accent);
     text-decoration: none;
     border-radius: 6px;
     transition: all 0.3s ease;
     font-size: 0.85em;
-    border: 1px solid transparent;
+    border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
 .download-link:hover {
-    background: #667eea;
+    background: var(--accent);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
 }
 
 .download-link:hover svg {
@@ -272,7 +291,7 @@ footer a:hover {
 }
 
 .no-download {
-    color: #ccc;
+    color: var(--muted);
     font-size: 14px;
     opacity: 0.5;
 }
@@ -289,14 +308,14 @@ header {
     top: 0;
     z-index: 999;
     padding: 10px 10px 4px;
-    background: #d3d3d3; /* Adjust the background color as needed */
-    border-bottom: 1.3px solid black; /* Adjust the border color as needed */
+    background: var(--surface);
+    border-bottom: 1.3px solid var(--border);
     animation: down .5s ease .8s both;
 }
 
 header a {
     font-weight: 600 !important;
-    color: black; /* Adjust the text color as needed */
+    color: var(--text); /* Adjust the text color as needed */
     text-decoration: none;
 }
 
@@ -318,16 +337,16 @@ header li {
 /* Ping Site */
 
 .status-online {
-    color: green;
+    color: var(--success);
     font-weight: bold;
 }
 .status-offline {
-    color: red;
+    color: var(--error);
     font-weight: bold;
 }
 #showAdvanced {
     cursor: pointer;
-    color: blue;
+    color: var(--accent);
     text-decoration: underline;
 }
 #showAdvanced:hover {
@@ -353,16 +372,16 @@ header li {
     word-break: break-all;
     text-align:justify;
     user-select: all;
-    color: rgb(0, 0, 0);
+    color: var(--text);
     width: 25%; /* Adjusted for equal spacing */
     line-height: 1.05;
     padding: 8px 10px; /* Reduced horizontal padding */
-    border-bottom: 1px solid rgba(255,255,255,.6);
+    border-bottom: 1px solid rgba(255,255,255,.2);
 }
 #donate_options tbody span {
     display: inline-block;
     border-radius: 4px;
-    background: #d3d3d3;
+    background: #1f2937;
     padding: 12px;
     white-space: nowrap;
     overflow: hidden;
@@ -384,25 +403,25 @@ header li {
 .donation-section {
     margin: 20px 0px; 
     padding: 20px;
-    background-color: #f4f7f6; 
+    background-color: var(--surface);
     border-radius: 8px; 
 }
 
 .donation-title {
-    color: #333;
+    color: var(--text);
     text-align: center;
     margin-bottom: 16px;
 }
 
 .donation-text {
-    color: #666;
+    color: var(--muted);
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 20px; 
 }
 
 .donation-text strong, .bold-link {
-    color: #333;
+    color: var(--text);
     font-weight: bold;
     text-decoration: none; 
 }
@@ -412,7 +431,7 @@ header li {
 }
 
 .donation-text a, .donation-text strong {
-    color: #333;
+    color: var(--text);
     font-weight: bold;
     text-decoration: none; 
 }
@@ -423,9 +442,9 @@ header li {
 .donation-message {
     display: block; 
     padding: 20px;
-    background-color: #fff; 
+    background-color: var(--surface);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 1px var(--border);
     margin: 40px auto; 
     max-width: 960px; 
 }
@@ -433,12 +452,12 @@ header li {
 .donation-section {
     margin: 20px 0; 
     padding: 20px;
-    background-color: #f4f7f6;
+    background-color: var(--surface);
     border-radius: 8px;
 }
 
 .donation-message .donation-text, .donation-message .donation-text a, .donation-message .donation-text strong {
-    color: #333;
+    color: var(--muted);
     font-size: 16px;
     line-height: 1.6;
     text-decoration: none; 
@@ -446,4 +465,22 @@ header li {
 
 .donation-message .donation-text a:hover {
     text-decoration: underline; 
+}
+
+/* Home page CSS status dots (proxy indicator) */
+.status-dot {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.status--up {
+    background-color: var(--success);
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.45);
+}
+.status--down {
+    background-color: var(--error);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.45);
 }

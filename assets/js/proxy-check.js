@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (data.isUsingProxy) {
             // User is connected through a known proxy
             const flagHtml = data.proxyFlag ? 
-                `<img src="${data.proxyFlag}" alt="Flag" style="height: 15px;">` : '';
-            
+                `<img src="${data.proxyFlag}" alt="Flag" style="height: 15px; vertical-align: middle;">` : '';
+
             statusContainer.innerHTML = `
-                <img src='/assets/images/green_light.svg' alt='Green Light Indicator - Using a known outproxy' class='status-light'>
+                <span class='status-dot status--up' title='Using a known outproxy'></span>
                 <div class='status-message'>
                     You are connected to ${data.proxyName}<br>
                     Location: ${flagHtml} ${data.proxyLocation}
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             // User is NOT using a known proxy
             statusContainer.innerHTML = `
-                <img src='/assets/images/red_light.svg' alt='Red Light Indicator - Not using a known outproxy' class='status-light'>
+                <span class='status-dot status--down' title='Not using a known outproxy'></span>
                 <div class='status-message'>You are NOT using a known outproxy</div>
             `;
         }
