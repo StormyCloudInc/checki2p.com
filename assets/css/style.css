@@ -20,6 +20,19 @@
     --radius: 12px;
 }
 
+[data-theme="light"] {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --success: #16a34a;
+    --warn: #d97706;
+    --error: #dc2626;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
@@ -59,6 +72,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 0 1px var(--border);
     margin-bottom: 20px;
+}
+.status-emphasis {
+    font-size: 1.2em;
+    font-weight: 600;
 }
 .donate-banner {
     display: none;
@@ -292,8 +309,15 @@ footer a:hover {
 
 .no-download {
     color: var(--muted);
-    font-size: 14px;
-    opacity: 0.5;
+    font-size: 0.85em;
+    opacity: 0.8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    min-height: 32px;
 }
 
 .reseed-footer a:hover {
@@ -317,6 +341,18 @@ header a {
     font-weight: 600 !important;
     color: var(--text); /* Adjust the text color as needed */
     text-decoration: none;
+}
+header button.theme-toggle {
+    font-weight: 600 !important;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+header button.theme-toggle:hover {
+    background: rgba(255,255,255,0.06);
 }
 
 header ul {

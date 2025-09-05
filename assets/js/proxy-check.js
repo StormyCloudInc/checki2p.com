@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             statusContainer.innerHTML = `
                 <span class='status-dot status--up' title='Using a known outproxy'></span>
-                <div class='status-message'>
+                <div class='status-message status-emphasis'>
                     You are connected to ${data.proxyName}<br>
-                    Location: ${flagHtml} ${data.proxyLocation}
+                    <span style="font-size: .9em; color: var(--muted);">Location: ${flagHtml} ${data.proxyLocation}</span>
                 </div>
             `;
         } else {
             // User is NOT using a known proxy
             statusContainer.innerHTML = `
                 <span class='status-dot status--down' title='Not using a known outproxy'></span>
-                <div class='status-message'>You are NOT using a known outproxy</div>
+                <div class='status-message status-emphasis'>You are NOT using a known outproxy</div>
             `;
         }
     } catch (error) {

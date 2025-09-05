@@ -37,9 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <td style='text-align: center;'>
                             <span class='dot ${statusClass}' title='${escapeHtml(tooltip)}'></span>
                         </td>
-                        <td style='text-align: center;'>
-                            ${downloadLink}
-                        </td>
+                        <td style='text-align: center; min-height: 32px;'>${downloadLink}</td>
                     </tr>
                 `;
             });
