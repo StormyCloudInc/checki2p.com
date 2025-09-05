@@ -55,8 +55,15 @@ exports.handler = async (event, context) => {
 
     // Transform the data for frontend consumption
     const servers = response.documents.map(doc => {
-      // Special case: reseed.diva.exchange is always online and has a special URL
+      // Special case: reseed.diva.exchange is always online
       if (doc.hostname === 'reseed.diva.exchange') {
+        // Generate Appwrite storage URL for diva.exchange (it should be stored there by check.py)
+        let download_url = null;
+        if (STORAGE_BUCKET_ID && APPWRITE_STORAGE_API_KEY) {
+          const fileId = doc.hostname.replace(/\./g, '_') + '_su3';
+          download_url = `${APPWRITE_ENDPOINT}/storage/buckets/${STORAGE_BUCKET_ID}/files/${fileId}/download?project=${APPWRITE_PROJECT_ID}`;
+        }
+        
         return {
           server_name: doc.hostname,
           status: 'online',
@@ -64,7 +71,7 @@ exports.handler = async (event, context) => {
           last_checked: doc.last_check,
           router_infos: doc.router_infos || 0,
           offline_duration: null,
-          download_url: 'https://reseed.diva.exchange/i2pseeds.su3'
+          download_url: download_url
         };
       }
 
