@@ -55,7 +55,7 @@ exports.handler = async (event, context) => {
 
     // Transform the data for frontend consumption
     const servers = response.documents.map(doc => {
-      // Special case: reseed.diva.exchange is always online
+      // Special case: reseed.diva.exchange is always online and has a special URL
       if (doc.hostname === 'reseed.diva.exchange') {
         return {
           server_name: doc.hostname,
@@ -63,7 +63,8 @@ exports.handler = async (event, context) => {
           status_message: 'Success',
           last_checked: doc.last_check,
           router_infos: doc.router_infos || 0,
-          offline_duration: null
+          offline_duration: null,
+          download_url: 'https://reseed.diva.exchange/i2pseeds.su3'
         };
       }
 

@@ -19,11 +19,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Create the status table
             let tableHTML = `
                 <table class='status-table'>
-                    <tr>
-                        <th>Server Name</th>
-                        <th style='text-align: center;'>Status</th>
-                        <th style='text-align: center;'>Download</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Server Name</th>
+                            <th style='text-align: center;'>Status</th>
+                            <th style='text-align: center;'>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
             `;
             
             sortedServers.forEach(server => {
@@ -44,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
             });
             
-            tableHTML += '</table>';
+            tableHTML += '</tbody></table>';
             
             // Add last checked time
             if (data.last_checked) {
