@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     try {
         // Fetch server status from Appwrite-based Netlify function
-        const response = await fetch('/.netlify/functions/reseed-status-appwrite');
+        const response = await fetch('/api/reseed-status');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

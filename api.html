@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I2P Reseed Check</title>
+    <title>API | CheckI2P.com</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon.ico">
 </head>
@@ -15,7 +15,6 @@
                 <li><a href="/index.html">CheckI2P.com</a></li>
                 <li><a href="/reseed.html">Reseed Server Status</a></li>
                 <li><a href="/donate.html">Donate Today!</a></li>
-                <li><a href="/api.html">API</a></li>
                 <li><button class="theme-toggle" aria-label="Toggle color theme">
                     <svg class="icon-bulb-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M9 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -32,34 +31,65 @@
             </ul>
         </nav>
     </header>
-    
-    <div class="container">
-        <div class="header">
-            <img src="/assets/images/logo-dark.svg" alt="Logo" class="logo">
-        </div>
 
-        <div class="content">
-        </div>
-
-        <div class="message">
-            <div id="statusContainer">
-                <p>Loading server status...</p>
-            </div>
-        </div>
+    <div class="header">
+        <img src="/assets/images/logo-dark.svg" alt="Logo" class="logo">
     </div>
 
-    <footer class="reseed-footer">
+    <div class="message" style="max-width: 960px; margin: 20px auto; text-align: left;">
+        <h2 style="margin-top: 0;">API</h2>
+        <p class="donation-text">Simple, read-only HTTP endpoints returning JSON. CORS enabled. No auth required.</p>
+
+        <h3>Reseed status</h3>
+        <p class="donation-text"><code>/api/reseed-status</code></p>
+        <pre class="donation-message" style="overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 13px;">
+GET /api/reseed-status
+200 OK
+{
+  "servers": [
+    { "server_name": "reseed.example.org", "status": "online|offline|warning", "status_message": "...", "last_checked": "...", "router_infos": 0, "offline_duration": null, "download_url": "..." }
+  ],
+  "last_checked": "2025-09-01T12:34:56.000Z",
+  "count": 18,
+  "backend": "appwrite"
+}
+        </pre>
+
+        <h4>Filter by server</h4>
+        <p class="donation-text">Get only one server by hostname.</p>
+        <pre class="donation-message" style="overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 13px;">
+GET /api/reseed-status/reseed.example.org
+        </pre>
+
+        <h3>Outproxy check</h3>
+        <p class="donation-text"><code>/api/check-proxy</code> (edge function)</p>
+        <pre class="donation-message" style="overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 13px;">
+GET /api/check-proxy
+200 OK
+{ "isUsingProxy": false, "visitorIP": "203.0.113.10" }
+        </pre>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Cache: reseed response cached for up to 60s</li>
+            <li>Rate limiting: none enforced</li>
+            <li>Attribution: appreciated but not required</li>
+        </ul>
+    </div>
+
+    <footer>
         Created by <a href="https://stormycloud.org/">stormycloud.org</a> | 
         <a href="https://gitlab.com/stormycloud-group/checki2p-com" target="_blank">GitLab</a> | 
         <a href="https://twitter.com/StormyCloudInc" target="_blank">Twitter</a> | 
         <a href="https://www.instagram.com/stormycloudinc/" target="_blank">Instagram</a>
     </footer>
 
-    <script src="/assets/js/reseed-status.js"></script>
     <script src="/assets/js/theme-toggle.js"></script>
-    
     <!-- 100% privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+    
 </body>
 </html>
+
+

@@ -43,14 +43,21 @@ exports.handler = async (event, context) => {
   const databases = new sdk.Databases(client);
 
   try {
-    // Query for all server statuses
+    // Optional filter by server (hostname)
+    const qs = event.queryStringParameters || {};
+    const filterHost = (qs.server || qs.hostname || '').trim();
+    // Query for server statuses (optionally filter by hostname)
+    const queries = [sdk.Query.limit(100)];
+    if (filterHost) {
+      queries.push(sdk.Query.equal('hostname', filterHost));
+    } else {
+      queries.push(sdk.Query.orderAsc('hostname'));
+    }
+
     const response = await databases.listDocuments(
       DATABASE_ID,
       COLLECTION_ID,
-      [
-        sdk.Query.orderAsc('hostname'),
-        sdk.Query.limit(100)
-      ]
+      queries
     );
 
     // Transform the data for frontend consumption
