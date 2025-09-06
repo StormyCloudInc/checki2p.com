@@ -139,6 +139,14 @@ footer a:hover {
     background: #0f172a;
 }
 
+[data-theme="light"] .status-table thead {
+    background: #e2e8f0;
+}
+
+[data-theme="light"] .status-table th {
+    color: #0f172a;
+}
+
 .status-table th {
     color: var(--text);
     font-weight: 600;

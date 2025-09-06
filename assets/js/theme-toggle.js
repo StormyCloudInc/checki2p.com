@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.src = isLight ? lightSrc : darkSrc;
     }
 
-    // Initialize theme from storage or system
+    // Initialize theme from storage, default to dark
     const saved = localStorage.getItem(storageKey);
-    const initial = saved || (prefersDark ? 'dark' : 'light');
+    const initial = saved || 'dark';
     applyTheme(initial);
 
     // Attach toggle handler
