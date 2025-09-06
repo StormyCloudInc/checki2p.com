@@ -354,6 +354,19 @@ header button.theme-toggle {
 header button.theme-toggle:hover {
     background: rgba(255,255,255,0.06);
 }
+header button.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+header button.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+header button.theme-toggle .icon-bulb-on { display: none; }
+[data-theme="light"] header button.theme-toggle .icon-bulb-on { display: inline-block; }
+[data-theme="light"] header button.theme-toggle .icon-bulb-off { display: none; }
 
 header ul {
     display: flex;
