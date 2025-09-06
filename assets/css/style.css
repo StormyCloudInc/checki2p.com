@@ -95,8 +95,7 @@ footer {
     background-color: var(--surface);
     color: var(--text);
     padding: 10px 0;
-    position: absolute;
-    bottom: 0;
+    position: relative;
     width: 100%;
     font-weight: bold; 
 }
