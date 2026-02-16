@@ -1,51 +1,44 @@
-// Check proxy status when page loads
 document.addEventListener('DOMContentLoaded', async () => {
-    const statusContainer = document.getElementById('statusContainer');
-    
+    const el = document.getElementById('proxyStatus');
+    if (!el) return;
+
     try {
-        // Call the edge function to check proxy status
         const response = await fetch('/api/check-proxy');
         const data = await response.json();
-        
-        // Check for debug information
+
         if (data.debug) {
-            console.log('=== Proxy Check Debug Info ===');
-            console.log('Visitor IP:', data.debug.visitorIP);
-            console.log('Context IP:', data.debug.contextIP);
-            console.log('Client IP from headers:', data.debug.clientIP);
-            console.log('Checked IPs:', data.debug.checkedIPs);
-            console.log('Checked Subnets:', data.debug.checkedSubnets);
-            console.log('All Headers:', data.debug.headers);
-            console.log('===============================');
+            console.log('=== proxy check debug ===');
+            console.log('visitor ip:', data.debug.visitorIP);
+            console.log('context ip:', data.debug.contextIP);
+            console.log('client ip:', data.debug.clientIP);
+            console.log('checked ips:', data.debug.checkedIPs);
+            console.log('checked subnets:', data.debug.checkedSubnets);
+            console.log('headers:', data.debug.headers);
         }
+
+        el.classList.remove('loading');
 
         if (data.isUsingProxy) {
-            // User is connected through a known proxy
-            const flagHtml = data.proxyFlag ?
-                `<img src="${data.proxyFlag}" alt="Flag" style="height: 15px; vertical-align: middle;">` : '';
-
-            statusContainer.innerHTML = `
-                <span class='status-dot status--up' title='Using a known outproxy'></span>
-                <div class='status-message status-emphasis'>
-                    You are connected to ${data.proxyName}<br>
-                    <span style="font-size: .9em; color: var(--muted);">Location: ${flagHtml} ${data.proxyLocation}</span>
-                </div>
-            `;
+            el.innerHTML =
+                `<span class="proxy-connected">\u25cf connected to ${escapeHtml(data.proxyName)}</span>` +
+                `<div class="proxy-detail">location: ${escapeHtml(data.proxyLocation)}</div>`;
         } else {
-            // User is NOT using a known proxy
-            let debugHtml = '';
+            let debug = '';
             if (data.debug) {
-                debugHtml = `<br><span style="font-size: .8em; color: var(--muted);">Debug: Your IP is ${data.debug.visitorIP}</span>`;
+                debug = `<div class="proxy-detail">ip: ${escapeHtml(data.debug.visitorIP)}</div>`;
             }
-            statusContainer.innerHTML = `
-                <span class='status-dot status--down' title='Not using a known outproxy'></span>
-                <div class='status-message status-emphasis'>You are NOT using a known outproxy${debugHtml}</div>
-            `;
+            el.innerHTML =
+                `<span class="proxy-disconnected">\u25cb not connected to a known outproxy</span>` +
+                debug;
         }
     } catch (error) {
-        console.error('Error checking proxy status:', error);
-        statusContainer.innerHTML = `
-            <div class='status-message'>Error checking proxy status. Please try again later.</div>
-        `;
+        console.error('proxy check error:', error);
+        el.classList.remove('loading');
+        el.innerHTML = `<span class="proxy-disconnected">error: could not check proxy status</span>`;
     }
 });
+
+function escapeHtml(text) {
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return String(text).replace(/[&<>"']/g, m => map[m]);
+}

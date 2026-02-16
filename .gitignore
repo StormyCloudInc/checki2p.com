@@ -1,8 +1,9 @@
-checkproxy.php
+node_modules/
+.wrangler/
+.dev.vars
 .env
 .env.local
-node_modules/
-.netlify/
+.DS_Store
 *.swp
-scripts/
-check.py
+*.su3
+reseed_output.txt

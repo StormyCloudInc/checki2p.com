@@ -1,0 +1,13 @@
+/index.php        /               301
+/index.html       /               301
+/api/ip           /api/check-proxy 301
+/api/ip/          /api/check-proxy 301
+/api/ip/index.php /api/check-proxy 301
+/reseed.html      /               301
+/reseed           /               301
+/reseed/          /               301
+/reseed/index.php /               301
+/api.html         /docs           301
+/ping/index.php   /ping.html      301
+/donate/index.php /donate.html    301
+/donate/          /donate.html    301

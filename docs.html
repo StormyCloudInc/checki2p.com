@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>checki2p.com</title>
+    <title>api | checki2p.com</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon.ico">
 </head>
@@ -12,8 +12,8 @@
         <nav>
             <span class="prompt">root@checki2p:~#</span>
             <ul>
-                <li><a href="/" class="active">[status]</a></li>
-                <li><a href="/docs">[api]</a></li>
+                <li><a href="/">[status]</a></li>
+                <li><a href="/docs" class="active">[api]</a></li>
                 <li><a href="/donate">[donate]</a></li>
                 <li><button class="theme-toggle" aria-label="Toggle color theme">[dark]</button></li>
             </ul>
@@ -21,15 +21,32 @@
     </header>
 
     <main>
-        <section>
-            <h2>[outproxy_status]</h2>
-            <div id="proxyStatus" class="proxy-result loading">checking connection...<span class="cursor">_</span></div>
-        </section>
+        <h2>[api_documentation]</h2>
+        <p style="color: var(--muted); margin-bottom: 28px;">json responses. cors enabled. no auth required.</p>
 
-        <section>
-            <h2>[reseed_servers]</h2>
-            <div id="reseedStatus" class="loading">loading...<span class="cursor">_</span></div>
-        </section>
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/reseed-status</h3>
+            <p>returns status of all reseed servers</p>
+            <pre><code>$ curl -s https://checki2p.com/api/reseed-status | jq</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/reseed-status/:hostname</h3>
+            <p>filter by server hostname</p>
+            <pre><code>$ curl -s https://checki2p.com/api/reseed-status/reseed.stormycloud.org | jq</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/check-proxy</h3>
+            <p>check if visitor ip matches a known i2p outproxy</p>
+            <pre><code>$ curl -s https://checki2p.com/api/check-proxy | jq</code></pre>
+        </div>
+
+        <h3>[notes]</h3>
+        <ul class="api-notes">
+            <li>reseed response cached for 60s</li>
+            <li>attribution appreciated but not required</li>
+        </ul>
     </main>
 
     <footer>
@@ -39,8 +56,6 @@
         <a href="https://www.instagram.com/stormycloudinc/" target="_blank">instagram</a>
     </footer>
 
-    <script src="/assets/js/proxy-check.js"></script>
-    <script src="/assets/js/reseed-status.js"></script>
     <script src="/assets/js/theme-toggle.js"></script>
 
     <!-- 100% privacy-first analytics -->

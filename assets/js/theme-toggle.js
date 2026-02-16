@@ -1,8 +1,6 @@
-// Lightweight theme toggle with persistence and logo swapping
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const storageKey = 'checki2p-theme';
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     function applyTheme(theme) {
         if (theme === 'light') {
@@ -10,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             root.removeAttribute('data-theme');
         }
-        swapLogo();
+        updateButton();
     }
 
     function currentTheme() {
@@ -21,31 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const next = currentTheme() === 'light' ? 'dark' : 'light';
         localStorage.setItem(storageKey, next);
         applyTheme(next);
+    }
+
+    function updateButton() {
         const btn = document.querySelector('button.theme-toggle');
-        if (btn) btn.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        if (!btn) return;
+        const theme = currentTheme();
+        btn.textContent = `[${theme}]`;
+        btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
     }
 
-    function swapLogo() {
-        const logo = document.querySelector('.logo');
-        if (!logo) return;
-        const isLight = currentTheme() === 'light';
-        // Expect filenames logo-light.svg and logo-dark.svg
-        const lightSrc = '/assets/images/logo-light.svg';
-        const darkSrc = '/assets/images/logo-dark.svg';
-        logo.src = isLight ? lightSrc : darkSrc;
-    }
-
-    // Initialize theme from storage, default to dark
     const saved = localStorage.getItem(storageKey);
-    const initial = saved || 'dark';
-    applyTheme(initial);
+    applyTheme(saved || 'dark');
 
-    // Attach toggle handler
-    const existingBtn = document.querySelector('button.theme-toggle');
-    if (existingBtn) {
-        existingBtn.addEventListener('click', toggleTheme);
-        existingBtn.setAttribute('aria-label', initial === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
-    }
+    const btn = document.querySelector('button.theme-toggle');
+    if (btn) btn.addEventListener('click', toggleTheme);
 });
-
-

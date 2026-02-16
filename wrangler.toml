@@ -1,0 +1,16 @@
+name = "checki2p-pages"
+compatibility_date = "2024-06-01"
+pages_build_output_dir = "."
+
+[vars]
+DEBUG_PROXY = "false"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "reseed_check"
+database_id = "c4f57c6b-da0e-4574-a47b-c5f6cfa8f393"
+
+[[r2_buckets]]
+binding = "SU3_BUCKET"
+bucket_name = "checki2p-su3"
+preview_bucket_name = "checki2p-su3"

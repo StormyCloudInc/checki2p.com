@@ -3,9 +3,9 @@
   "version": "2.0.1",
   "description": "CheckI2P.com - I2P Proxy Detection Service",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'No build required for static site'",
-    "hash-ips": "node scripts/hash-ips.js"
+    "dev": "wrangler pages dev .",
+    "deploy": "wrangler pages deploy .",
+    "build": "echo 'No build required for static site'"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,8 @@
   ],
   "author": "StormyCloud Inc",
   "license": "MIT",
-  "dependencies": {
-    "pg": "^8.11.3",
-    "node-appwrite": "^14.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "netlify-cli": "^17.0.0"
+    "wrangler": "^3.84.1"
   }
 }
